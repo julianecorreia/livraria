@@ -23,6 +23,4 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.listarTodos());
     }
 
-
-
 }
