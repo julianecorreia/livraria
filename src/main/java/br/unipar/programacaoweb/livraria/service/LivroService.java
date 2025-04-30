@@ -28,9 +28,7 @@ public class LivroService {
     }
 
     public List<Livro> buscarPorTitulo(String titulo) {
-        return livroRepository.findAll().stream()
-                .filter(livro -> livro.getTitulo().equalsIgnoreCase(titulo))
-                .toList();
+        return livroRepository.findByTituloContainingIgnoreCase(titulo);
     }
 
     public List<Livro> listarTodos() {
