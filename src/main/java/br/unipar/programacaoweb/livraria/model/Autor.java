@@ -25,7 +25,7 @@ public class Autor {
 
     private String email;
 
-    @OneToMany(mappedBy = "autor")
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true, fetch= FetchType.LAZY)
     private List<Livro> livros = new ArrayList<>();
 
 }

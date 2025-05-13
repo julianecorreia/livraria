@@ -2,6 +2,7 @@ package br.unipar.programacaoweb.livraria.controller;
 
 import br.unipar.programacaoweb.livraria.model.Livro;
 import br.unipar.programacaoweb.livraria.service.LivroService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,7 @@ public class LivroController {
     }
 
     @PostMapping("/salvar")
-    public ResponseEntity<Livro> salvarLivro(@RequestBody Livro livro) {
+    public ResponseEntity<Livro> salvarLivro(@Valid @RequestBody Livro livro) {
         Livro livroSalvo = livroService.salvar(livro);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(livroSalvo);
