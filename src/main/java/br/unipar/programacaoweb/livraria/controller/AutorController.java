@@ -58,7 +58,11 @@ public class AutorController {
     @PutMapping("editar/{id}")
     public ResponseEntity<Autor> editarAutor(@PathVariable Long id,
                                                 @RequestBody Autor autor) {
-        return ResponseEntity.ok(autorService.editar(id, autor));
+        Autor autorEditado = autorService.editar(id, autor);
+        if(autorEditado == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(autorEditado);
     }
 
 }

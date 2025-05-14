@@ -2,12 +2,15 @@ package br.unipar.programacaoweb.livraria.controller;
 
 import br.unipar.programacaoweb.livraria.model.Livro;
 import br.unipar.programacaoweb.livraria.service.LivroService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/livro")
@@ -19,6 +22,7 @@ public class LivroController {
         this.livroService = livroService;
     }
 
+    @Operation(summary = "Listar todos os livros")
     @GetMapping("/listar")
     public ResponseEntity<List<Livro>> listarLivros() {
         List<Livro> livros = livroService.listarTodos();
@@ -29,6 +33,8 @@ public class LivroController {
         return ResponseEntity.ok(livros);
     }
 
+    @Operation(summary = "Buscar livro por ID")
+    @Parameter(name = "id", description = "ID do livro a ser buscado")
     @GetMapping("/buscar/{id}")
     public ResponseEntity<Livro> buscarLivroPorId(@PathVariable Long id) {
         Livro livro = livroService.buscarPorId(id);

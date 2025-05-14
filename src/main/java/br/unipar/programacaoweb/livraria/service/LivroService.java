@@ -36,4 +36,33 @@ public class LivroService {
     }
 
 
+    public void atualizarNumeroPaginasAleatoriamente() {
+        List<Livro> livros = listarTodos();
+        for (Livro livro : livros) {
+            int numeroPaginasAleatorio = (int) (Math.random() * 1000) + 1; // Gera um número aleatório entre 1 e 1000
+            livro.setNumeroPaginas(numeroPaginasAleatorio);
+            System.out.println("Livro: " + livro.getTitulo() + " - Número de páginas atualizado para: " + numeroPaginasAleatorio);
+            salvar(livro);
+        }
+    }
+
+    public void criarNovaLeituraAleatoria() {
+        Livro livro = new Livro();
+        livro.setTitulo("Título Aleatório");
+        livro.setNumeroPaginas(100);
+        livro.setGenero("Gênero Aleatório");
+
+        livroRepository.save(livro);
+    }
+
+    public void verificarSensoresOffline() {
+        List<Livro> livros = listarTodos();
+        for (Livro livro : livros) {
+            //verifca se está offline
+            if (livro.getNumeroPaginas() == null) {
+               //mandar mensagem de aviso
+                System.out.println("Livro: " + livro.getTitulo() + " está offline.");
+            }
+        }
+    }
 }
